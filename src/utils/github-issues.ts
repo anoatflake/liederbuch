@@ -1,7 +1,6 @@
 //import { Octokit } from "@octokit/core";
-import { env } from "../env/server.mjs";
 
-const ISSUE_TYPE = {
+export const ISSUE_TYPE = {
   BUG: "BUG",
   FEATURE: "FEATURE",
   NEW_SONG: "NEW_SONG",
@@ -41,7 +40,7 @@ export async function createIssue(
  * @param title
  * @returns string
  */
-function createBasicTitle(issueType: IssueType, title: string): string {
+export function createBasicTitle(issueType: IssueType, title: string): string {
   switch (issueType) {
     case ISSUE_TYPE.BUG:
       return "bug: " + title;
@@ -60,9 +59,9 @@ function createBasicTitle(issueType: IssueType, title: string): string {
  * @param description
  * @returns string
  */
-function createBasicDescription(
+export function createBasicDescription(
   issueType: IssueType,
-  description: string
+  description: string,
 ): string {
   let descriptionString = "";
   switch (issueType) {
@@ -84,7 +83,7 @@ function createBasicDescription(
  * @param linkToScreenshot
  * @returns string
  */
-function createScreenshot(linkToScreenshot?: string): string {
+export function createScreenshot(linkToScreenshot?: string): string {
   let screenshotDescription = "### Screenshot: \n";
   if (linkToScreenshot) {
     screenshotDescription += "![link to screenshot](" + linkToScreenshot + ")";
@@ -99,7 +98,7 @@ function createScreenshot(linkToScreenshot?: string): string {
  * @param browserInfo
  * @returns string
  */
-function createBrowserInfo(browserInfo?: string): string {
+export function createBrowserInfo(browserInfo?: string): string {
   let additionalInfoDescribition = "### Browser/OS: \n";
   if (browserInfo) {
     additionalInfoDescribition += browserInfo;

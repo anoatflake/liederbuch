@@ -5,6 +5,11 @@ import { ALL_SONGS } from "../data/songIds";
 
 const songsDirectory = path.join(process.cwd(), "public", "songs");
 
+export interface SongData {
+  id: string;
+  contentHtml: string;
+}
+
 /**
  * Gets all song names (aka filenames) from the songsDirectory
  * @returns string array
@@ -66,11 +71,14 @@ export function getAllLetterPaths(): Array<{
  * @param id string | string[] | undefined
  * @returns songdata object { id, contentHtml }
  */
-export async function getSongData(id: string | string[] | undefined) {
-  const fullPath = path.join(songsDirectory, `${id}.html`);
+export async function getSongData(
+  id: string | string[] | undefined,
+): Promise<SongData> {
+  const songId = Array.isArray(id) ? (id[0] ?? "") : (id ?? "");
+  const fullPath = path.join(songsDirectory, `${songId}.html`);
   const contentHtml = fs.readFileSync(fullPath, `utf-8`);
   return {
-    id,
+    id: songId,
     contentHtml,
   };
 }

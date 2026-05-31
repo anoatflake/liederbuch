@@ -1,32 +1,28 @@
-import type { GetServerSideProps, NextPage } from "next";
-import SideBar from "../../components/sidebar";
+import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { trpc } from "../../utils/trpc";
-import { getSongData } from "../../utils/song";
-import { Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { error } from "console";
 // isr???
 // theo link shortener --> vercel middleware
 
 const Current: NextPage = () => {
   const { id } = useRouter().query;
-
-  const apiPath =
-    "http://localhost:3000/api/song/" +
-    trpc.repertoire.getRepertoireViaInviteCode.useQuery(id as string).data
-      ?.currentSong;
-  const { isLoading, isError, data } = useQuery(["songData"], async () =>
-    fetch(apiPath).then((res) => res.json())
-  );
+  const currentSong = trpc.repertoire.getRepertoireViaInviteCode.useQuery(
+    id as string,
+  ).data?.currentSong;
+  const { data } = useQuery<{ content?: string }>({
+    queryKey: ["songData", currentSong],
+    queryFn: async () =>
+      fetch(`/api/song/${currentSong}`).then((res) => res.json()),
+    enabled: Boolean(currentSong),
+  });
 
   return (
     <>
-      <SideBar />
       <main>
         <div
-          className="pt-14 md:pl-2 md:pt-4"
-          dangerouslySetInnerHTML={{ __html: data?.content }}
+          className="pt-14 md:pt-4 md:pl-2"
+          dangerouslySetInnerHTML={{ __html: data?.content ?? "" }}
         />
       </main>
     </>

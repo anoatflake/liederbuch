@@ -1,15 +1,18 @@
 // src/server/db/client.ts
 import { PrismaClient } from "@prisma/client";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { env } from "../../env/server.mjs";
 
 declare global {
-  // eslint-disable-next-line no-var
   var prisma: PrismaClient | undefined;
 }
+
+const adapter = new PrismaMariaDb(env.DATABASE_URL);
 
 export const prisma =
   global.prisma ||
   new PrismaClient({
+    adapter,
     log:
       env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
   });
