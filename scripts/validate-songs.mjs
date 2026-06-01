@@ -6,6 +6,8 @@ const maxExamples = 12;
 const strict = process.argv.includes("--strict");
 
 const countMatches = (text, pattern) => text.match(pattern)?.length ?? 0;
+const countClosingTags = (html, tag) =>
+  countMatches(html, new RegExp(`</${tag}\\s*>`, "gi"));
 
 const checks = [
   {
@@ -19,17 +21,17 @@ const checks = [
   {
     name: "unbalanced div tags",
     test: (html) =>
-      countMatches(html, /<div\b/gi) !== countMatches(html, /<\/div>/gi),
+      countMatches(html, /<div\b/gi) !== countClosingTags(html, "div"),
   },
   {
     name: "unbalanced paragraph tags",
     test: (html) =>
-      countMatches(html, /<p\b/gi) !== countMatches(html, /<\/p>/gi),
+      countMatches(html, /<p\b/gi) !== countClosingTags(html, "p"),
   },
   {
     name: "unbalanced span tags",
     test: (html) =>
-      countMatches(html, /<span\b/gi) !== countMatches(html, /<\/span>/gi),
+      countMatches(html, /<span\b/gi) !== countClosingTags(html, "span"),
   },
 ];
 
