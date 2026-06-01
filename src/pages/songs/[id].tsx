@@ -4,13 +4,16 @@ import type {
   NextPage,
   GetStaticPropsContext,
 } from "next";
-import { getAllSongPaths, getSongData } from "../../utils/song";
+import { getAllSongPaths, getSongData, type SongData } from "../../utils/song";
 import Head from "next/head";
-import SideBar from "../../components/sidebar";
 import SongMenu from "../../components/songMenu";
 import { cleanUpTitle } from "../../utils/songtitle";
 
-const Song: NextPage = ({ songData }: any) => {
+interface SongPageProps {
+  songData: SongData;
+}
+
+const Song: NextPage<SongPageProps> = ({ songData }) => {
   return (
     <>
       <Head>
@@ -21,11 +24,10 @@ const Song: NextPage = ({ songData }: any) => {
         ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SideBar />
       <main>
         <SongMenu id={songData.id} />
         <div
-          className="pt-14 md:pl-2 md:pt-4"
+          className="pt-14 md:pt-4 md:pl-2"
           dangerouslySetInnerHTML={{ __html: songData.contentHtml }}
         />
       </main>

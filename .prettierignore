@@ -1,3 +1,6 @@
 # Ignore artifacts:
 build
 coverage
+
+# Generated/transformed song templates are edited deliberately.
+public/songs/**/*.html

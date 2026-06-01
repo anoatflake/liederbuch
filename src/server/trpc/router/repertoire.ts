@@ -65,11 +65,6 @@ export const repertoireRouter = router({
   setCurrentSong: protectedProcedure
     .input(z.string())
     .mutation(async ({ input, ctx }) => {
-      const currentRep = await ctx.prisma.repertoire.findUnique({
-        where: {
-          userId: ctx.session.user.id,
-        },
-      });
       const result = await ctx.prisma.repertoire.update({
         where: {
           userId: ctx.session.user.id,
@@ -78,5 +73,6 @@ export const repertoireRouter = router({
           currentSong: input,
         },
       });
+      return { current: result };
     }),
 });

@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   @apply bg-slate-200 tracking-wide text-gray-700 dark:bg-gray-900 dark:text-slate-400;

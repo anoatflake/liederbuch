@@ -1,7 +1,8 @@
 import { useSession } from "next-auth/react";
 import { trpc } from "../../utils/trpc";
 import { isSongInRepertoire } from "../../utils/repertoire";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Plus, X } from "lucide-react";
 
 // TODO: move state setting to input var (loggedin? & inRep?)
 const AddToRepButton: React.FC<{ id: string }> = ({ id }) => {
@@ -9,7 +10,7 @@ const AddToRepButton: React.FC<{ id: string }> = ({ id }) => {
 
   const { data: songData } = trpc.users.getSongs.useQuery();
   const [isInReperoire, setIsInRepertoire] = useState(
-    isSongInRepertoire(id, songData)
+    isSongInRepertoire(id, songData),
   );
 
   const addSong = trpc.repertoire.addSongToRepertoire.useMutation();
@@ -25,7 +26,8 @@ const AddToRepButton: React.FC<{ id: string }> = ({ id }) => {
           setIsInRepertoire(true);
         }}
       >
-        <img src="/icons/plus.svg" alt="addIcon"></img>
+        <Plus aria-hidden="true" className="h-full w-full" />
+        <span className="sr-only">Add to repertoire</span>
       </button>
     ) : (
       <button
@@ -36,7 +38,8 @@ const AddToRepButton: React.FC<{ id: string }> = ({ id }) => {
           setIsInRepertoire(false);
         }}
       >
-        <img src="/icons/x-mark.svg" alt="removeIcon"></img>
+        <X aria-hidden="true" className="h-full w-full" />
+        <span className="sr-only">Remove from repertoire</span>
       </button>
     )
   ) : (

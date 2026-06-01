@@ -2,7 +2,7 @@ This is an app is a songbook collection with guitar chords, where the singers ar
 
 ## TODOs:
 
-- [ ] LetterGroup css override with selected
+- [x] LetterGroup css override with selected
 - [ ] Replace Ref. in html song templates
 - [ ] wenn der abend naht --> below
 
@@ -16,12 +16,12 @@ This is an app is a songbook collection with guitar chords, where the singers ar
     - [x] ~~english edge cases~~
   - [x] Sidebarbar
     - [x] ~~responsive sidebar~~
-    - [ ] icons for text labels
+    - [x] icons for text labels
     - [ ] search bar
-      - [ ] by title
+      - [x] by title
       - [ ] by text simalarity
-    - [ ] bug report button
-    - [ ] song request button
+    - [x] bug report button
+    - [x] song request button
   - [ ] **create songbook**
   - [ ] **follow page**
   - [ ] **Profile page**
@@ -43,7 +43,7 @@ This is an app is a songbook collection with guitar chords, where the singers ar
   - [x] ~~Chords~~
   - [x] ~~fix Chords nav bug~~
   - [x] ~~Letter list sidebar???~~
-  - [ ] dark mode toggle
+  - [x] dark mode toggle
   - [ ] english lang support --> **meta data**
   - [x] ~~responsive~~
   - [ ] Autoanimate??? --> for adding/removing songs to reportaire
@@ -63,21 +63,23 @@ This is an app is a songbook collection with guitar chords, where the singers ar
 - [ ] far future: stress test user
 - [ ] **logging**
 
-
 ## SONGS TO ADD:
+
 - [ ] Bock Schilf
 - [ ] Bock der pete
 - [ ] drei rote pfiffer
 - [ ] doppelbock panama
 - [ ] Bock miroschaka
-- [ ] Loch lomond --> DEUTSCH 
+- [ ] Loch lomond --> DEUTSCH
 
 ## TEXT NOT RIGHT??
+
 - [ ] Jalava
 - [ ] ye jacobites by name
 - [ ] leise weht der wind
 
 ## WEIRD CHORD HTML:
+
 - [ ] What shall we do with the drunken sailor
 - [ ] Wer bist du wirklich
 - [ ] Wenn der Abend naht
