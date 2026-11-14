@@ -1,5 +1,22 @@
 This is an app is a songbook collection with guitar chords, where the singers are able to follow the guitar player.
 
+## Development
+
+Use Node.js 26 LTS (`nvm use`) and install dependencies with `npm ci`.
+Copy `.env.example` to `.env` and fill in the values before running the app.
+
+Run `npm run lint`, `npm run typecheck`, `npm test`,
+`npm run validate:songs:strict`, and `npm run build` to run the same checks as CI.
+
+TypeScript stays on 6.0 because the latest stable typescript-eslint packages
+require TypeScript below 6.1. ESLint stays on 9.x because Next.js's React,
+import, and accessibility lint plugins do not yet support ESLint 10.
+Prisma stays on the latest stable 7.x release; the 8.x release candidates
+are excluded.
+
+The scoped minimatch override patches GHSA-g3hv-75wg-m249 in the lint toolchain
+until typescript-eslint updates its dependency.
+
 ## TODOs:
 
 - [x] LetterGroup css override with selected
